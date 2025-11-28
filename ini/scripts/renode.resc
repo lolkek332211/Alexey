@@ -1,0 +1,10 @@
+using sysbus
+
+mach create
+machine LoadPlatformDescription @platforms/cpus/stm32f407.repl
+sysbus LoadELF @".pio/build/renode/firmware.elf"
+showAnalyzer sysbus.usart1
+connector Connect sysbus.usart1 stdio
+machine SetFrequency 16000000
+echo "Прошивка загружена. Запускаем..."
+machine Start
